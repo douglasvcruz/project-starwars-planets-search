@@ -1,4 +1,51 @@
+* {
+  color: white;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: rgb(34, 34, 34);
+}
+
+tr {
+  display: table-row-group;
+}
+
+
+td {
+  border-bottom: 1px solid #828282;
+  font-size: smaller;
+  padding: 20px;
+}
+
+th {
+  background: #2e3035;
+  border-right: 1px solid rgb(34, 34, 34);
+  font-weight: 900;
+  padding: 20px;
+}
+
+.filter {
+  background-color: rgb(34, 34, 34);
+  background-image: url('./images/Vector.png');
+  background-position: 640px;
+  background-repeat: no-repeat;
+  border: 1px solid white;
+  border-radius: 5px;
+  font-size: large;
+  height: 42px;
+  margin: 40px 0;
+  padding-left: 10px;
+  width: 661px;
+}
+
 .App {
+  border: 1px solid white;
+  border-radius: 20px;
+  margin: 20px;
+  overflow: scroll;
+  padding-bottom: 20px;
   text-align: center;
 }
 
