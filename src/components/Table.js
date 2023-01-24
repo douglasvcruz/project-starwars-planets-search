@@ -40,7 +40,7 @@ function Table() {
             <td>{a.edited}</td>
             <td>{a.url}</td>
           </tr>
-        )) }
+        ))}
       </tbody>
     </table>
   );

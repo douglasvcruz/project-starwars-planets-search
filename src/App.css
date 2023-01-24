@@ -8,11 +8,6 @@ body {
   background-color: rgb(34, 34, 34);
 }
 
-tr {
-  display: table-row-group;
-}
-
-
 td {
   border-bottom: 1px solid #828282;
   font-size: smaller;
@@ -26,6 +21,28 @@ th {
   padding: 20px;
 }
 
+.input-filter {
+  background: rgb(34, 34, 34);
+  border: 1px solid white;
+  border-radius: 5px;
+  font-size: large;
+  font-weight: 900;
+  height: 42px;
+  margin-right: 40px;
+  padding-left: 10px;
+  width: 91px;
+}
+
+.button {
+  background: rgb(34, 34, 34);
+  border: 1px solid #fae60a;
+  border-radius: 5px;
+  color: #fae60a;
+  font-weight: 900;
+  height: 85px;
+  width: 91px;
+}
+
 .filter {
   background-color: rgb(34, 34, 34);
   background-image: url('./images/Vector.png');
@@ -33,11 +50,23 @@ th {
   background-repeat: no-repeat;
   border: 1px solid white;
   border-radius: 5px;
+  display: block;
   font-size: large;
   height: 42px;
-  margin: 40px 0;
+  margin: 40px auto;
   padding-left: 10px;
   width: 661px;
+}
+
+select {
+  background-color: rgb(34, 34, 34);
+  border: 0;
+  border-bottom: 1px solid white;
+  font-size: large;
+  font-weight: 900;
+  margin-bottom: 40px;
+  margin-right: 40px;
+  padding-bottom: 8px;
 }
 
 .App {
