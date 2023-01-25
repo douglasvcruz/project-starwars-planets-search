@@ -7,7 +7,7 @@ function useHandleChange(e) {
     setValue(target.value);
   };
 
-  return { value, onChange: handleChange };
+  return { value, onChange: handleChange, setValue };
 }
 
 export default useHandleChange;

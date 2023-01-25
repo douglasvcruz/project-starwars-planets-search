@@ -4,6 +4,7 @@ import { useMemo, useState } from 'react';
 import TableContext from './TableContext';
 import useFetch from '../hooks/useFetch';
 import useHandleChange from '../hooks/useHandleChange';
+import { arrayOptions } from '../data';
 
 function TableProvider({ children }) {
   const { data } = useFetch('https://swapi.dev/api/planets');
@@ -15,6 +16,7 @@ function TableProvider({ children }) {
   const checkedSortHandleChange = useHandleChange('');
 
   const [filtered, setFiltered] = useState('');
+  const [options, setOptionsFiltered] = useState(arrayOptions);
 
   const handleOrder = () => {
     const column = sortHandleChange.value;
@@ -36,10 +38,11 @@ function TableProvider({ children }) {
     ? filtered
     : data.filter(({ name }) => name.includes(searchHandleChange.value));
 
+  const column = columnHandleChange.value;
+  const comparison = comparisonHandleChange.value;
+  const input = inputHandleChange.value;
+
   const handleSubmit = () => {
-    const column = columnHandleChange.value;
-    const comparison = comparisonHandleChange.value;
-    const input = inputHandleChange.value;
     if (comparison === 'maior que') {
       setFiltered(
         filtered.length === 0
@@ -59,6 +62,9 @@ function TableProvider({ children }) {
           : filtered.filter((d) => Number(d[column]) === Number(input)),
       );
     }
+    const optionsFiltered = options.filter((o) => o !== column);
+    setOptionsFiltered(optionsFiltered);
+    columnHandleChange.setValue(optionsFiltered[0]);
   };
 
   const values = useMemo(
@@ -74,6 +80,7 @@ function TableProvider({ children }) {
       sortHandleChange,
       checkedSortHandleChange,
       handleOrder,
+      options,
     }),
     [
       data,
@@ -87,6 +94,7 @@ function TableProvider({ children }) {
       sortHandleChange,
       checkedSortHandleChange,
       handleOrder,
+      options,
     ],
   );
 

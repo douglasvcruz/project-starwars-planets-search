@@ -11,15 +11,8 @@ function Filters() {
     sortHandleChange,
     checkedSortHandleChange,
     handleOrder,
+    options,
   } = useContext(TableContext);
-
-  const arrayOptions = [
-    'population',
-    'orbital_period',
-    'rotation_period',
-    'diameter',
-    'surface_water',
-  ];
 
   return (
     <form>
@@ -36,7 +29,7 @@ function Filters() {
           value={ columnHandleChange.value }
           data-testid="column-filter"
         >
-          { arrayOptions.map((a, i) => (
+          { options.map((a, i) => (
             <option key={ i } value={ a }>{a}</option>
           ))}
         </select>
@@ -71,8 +64,8 @@ function Filters() {
         >
           <option value="population">population</option>
           <option value="orbital_period">orbital_period</option>
-          <option value="rotation_period">rotation_period</option>
           <option value="diameter">diameter</option>
+          <option value="rotation_period">rotation_period</option>
           <option value="surface_water">surface_water</option>
         </select>
         <label htmlFor="asc">
