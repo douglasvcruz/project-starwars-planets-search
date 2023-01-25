@@ -21,6 +21,10 @@ th {
   padding: 20px;
 }
 
+label {
+  margin: 20px;
+}
+
 .input-filter {
   background: rgb(34, 34, 34);
   border: 1px solid white;

@@ -26,7 +26,7 @@ function Table() {
       <tbody>
         { dataFilter.map((a, i) => (
           <tr key={ i }>
-            <td>{a.name}</td>
+            <td data-testid="planet-name">{a.name}</td>
             <td>{a.rotation_period}</td>
             <td>{a.orbital_period}</td>
             <td>{a.diameter}</td>
