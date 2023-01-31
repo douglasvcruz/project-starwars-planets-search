@@ -12,6 +12,9 @@ function Filters() {
     checkedSortHandleChange,
     handleOrder,
     options,
+    items,
+    removeButton,
+    removeAllFilter,
   } = useContext(TableContext);
 
   return (
@@ -97,6 +100,26 @@ function Filters() {
           ORDENAR
         </button>
       </section>
+      { items.length !== 0 && items.map(({ column, comparison, input }) => (
+        <section className="items" key={ column } data-testid="filter">
+          <p className="column">{column}</p>
+          <p className="comparison">{comparison}</p>
+          <p className="input">{input}</p>
+          <button
+            type="button"
+            onClick={ () => removeButton({ column, comparison, input }) }
+          >
+            X
+          </button>
+        </section>
+      ))}
+      <button
+        data-testid="button-remove-filters"
+        type="button"
+        onClick={ removeAllFilter }
+      >
+        Remover todas as filtragens
+      </button>
     </form>
   );
 }

@@ -16,6 +16,7 @@ function TableProvider({ children }) {
   const checkedSortHandleChange = useHandleChange('');
 
   const [filtered, setFiltered] = useState('');
+  const [items, setItems] = useState('');
   const [options, setOptionsFiltered] = useState(arrayOptions);
 
   const handleOrder = () => {
@@ -25,7 +26,6 @@ function TableProvider({ children }) {
     if (sort === 'ASC') {
       const sorted = data.filter((d) => d[column] !== 'unknown')
         .sort((a, b) => a[column] - b[column]);
-      console.log(sorted);
       setFiltered([...sorted, ...data.filter((d) => d[column] === 'unknown')]);
     } else {
       const sorted = data.filter((d) => d[column] !== 'unknown')
@@ -42,29 +42,47 @@ function TableProvider({ children }) {
   const comparison = comparisonHandleChange.value;
   const input = inputHandleChange.value;
 
+  const obj = [{
+    column, comparison, input,
+  }];
+
   const handleSubmit = () => {
+    let filtrando = filtered.length === 0 ? data : filtered;
     if (comparison === 'maior que') {
-      setFiltered(
-        filtered.length === 0
-          ? data.filter((d) => Number(d[column]) > Number(input))
-          : filtered.filter((d) => Number(d[column]) > Number(input)),
-      );
+      filtrando = filtrando.filter((d) => Number(d[column]) > Number(input));
     } else if (comparison === 'menor que') {
-      setFiltered(
-        filtered.length === 0
-          ? data.filter((d) => Number(d[column]) < Number(input))
-          : filtered.filter((d) => Number(d[column]) < Number(input)),
-      );
+      filtrando = filtrando.filter((d) => Number(d[column]) < Number(input));
     } else if (comparison === 'igual a') {
-      setFiltered(
-        filtered.length === 0
-          ? data.filter((d) => Number(d[column]) === Number(input))
-          : filtered.filter((d) => Number(d[column]) === Number(input)),
-      );
+      filtrando = filtrando.filter((d) => Number(d[column]) === Number(input));
     }
     const optionsFiltered = options.filter((o) => o !== column);
+    setFiltered(filtrando);
+    setItems([...items, ...obj]);
     setOptionsFiltered(optionsFiltered);
     columnHandleChange.setValue(optionsFiltered[0]);
+  };
+
+  const removeButton = (e) => {
+    const itemsFiltered = items.filter((a) => a.column !== e.column);
+    let filtrando = data;
+    itemsFiltered.forEach((a) => {
+      if (a.comparison === 'maior que') {
+        filtrando = filtrando.filter((d) => Number(d[a.column]) > Number(a.input));
+      } else if (a.comparison === 'menor que') {
+        filtrando = filtrando.filter((d) => Number(d[a.column]) < Number(a.input));
+      } else {
+        filtrando = filtrando.filter((d) => Number(d[a.column]) === Number(a.input));
+      }
+    });
+    setItems(itemsFiltered);
+    setOptionsFiltered([...options, e.column]);
+    setFiltered(filtrando);
+  };
+
+  const removeAllFilter = () => {
+    setFiltered(data);
+    setOptionsFiltered(arrayOptions);
+    setItems('');
   };
 
   const values = useMemo(
@@ -76,11 +94,13 @@ function TableProvider({ children }) {
       comparisonHandleChange,
       inputHandleChange,
       handleSubmit,
-      filtered,
       sortHandleChange,
       checkedSortHandleChange,
       handleOrder,
       options,
+      items,
+      removeButton,
+      removeAllFilter,
     }),
     [
       data,
@@ -90,11 +110,13 @@ function TableProvider({ children }) {
       comparisonHandleChange,
       inputHandleChange,
       handleSubmit,
-      filtered,
       sortHandleChange,
       checkedSortHandleChange,
       handleOrder,
       options,
+      items,
+      removeButton,
+      removeAllFilter,
     ],
   );
 
