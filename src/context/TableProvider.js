@@ -47,6 +47,9 @@ function TableProvider({ children }) {
   }];
 
   const handleSubmit = () => {
+    if (!column) {
+      return false;
+    }
     let filtrando = filtered.length === 0 ? data : filtered;
     if (comparison === 'maior que') {
       filtrando = filtrando.filter((d) => Number(d[column]) > Number(input));
@@ -77,6 +80,7 @@ function TableProvider({ children }) {
     setItems(itemsFiltered);
     setOptionsFiltered([...options, e.column]);
     setFiltered(filtrando);
+    columnHandleChange.setValue(e.column);
   };
 
   const removeAllFilter = () => {

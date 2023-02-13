@@ -72,6 +72,7 @@ label {
   color: #fae60a;
   font-weight: 900;
   height: 85px;
+  margin-right: 25px;
   width: 91px;
 }
 
@@ -146,4 +147,16 @@ select {
   to {
     transform: rotate(360deg);
   }
+}
+
+
+.remove-all {
+  background: rgb(34, 34, 34);
+  border: 1px solid #fae60a;
+  border-radius: 5px;
+  color: #fae60a;
+  font-weight: 600;
+  margin-bottom: 35px;
+  margin-top: 20px;
+  padding: 15px;
 }

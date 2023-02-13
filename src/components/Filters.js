@@ -99,6 +99,15 @@ function Filters() {
         >
           ORDENAR
         </button>
+        <br />
+        <button
+          className="remove-all"
+          data-testid="button-remove-filters"
+          type="button"
+          onClick={ removeAllFilter }
+        >
+          Remover todas as filtragens
+        </button>
       </section>
       { items.length !== 0 && items.map(({ column, comparison, input }) => (
         <section className="items" key={ column } data-testid="filter">
@@ -113,13 +122,6 @@ function Filters() {
           </button>
         </section>
       ))}
-      <button
-        data-testid="button-remove-filters"
-        type="button"
-        onClick={ removeAllFilter }
-      >
-        Remover todas as filtragens
-      </button>
     </form>
   );
 }
